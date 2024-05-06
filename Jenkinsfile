@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Git checkout'){
             steps {
-                git 'https://github.com/GosaliyaDeepCoder/Terraform-Azure.git'
+                git 'https://github.com/GosaliyaDeepCoder/Automate_Azure_Infra.git'
             }
         }
         stage('azurelogin') {
