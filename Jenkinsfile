@@ -24,7 +24,8 @@ pipeline {
         }
         stage('Terraform Validate'){
             steps {
-                    sh """                    
+                    sh """   
+                    cp ~/.ssh/tfazkey.pub ${WORKSPACE}/tfazkey.pub
                     echo "validating Terraform Code"
                     terraform validate
                     """
