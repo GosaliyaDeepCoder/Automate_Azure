@@ -28,7 +28,7 @@ resource "azurerm_linux_virtual_machine" "Deep-vm" {
       user         = "adminuser",
       identityfile = "~/.ssh/tfazkey"
     })
-    interpreter = var.host_os == "windows" ? ["PowerShell", "-Command"] : ["bash", "-c"]
+    #interpreter = var.host_os == "windows" ? ["PowerShell", "-Command"] : ["bash", "-c"]
 
   }
 
