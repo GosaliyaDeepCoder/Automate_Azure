@@ -1,18 +1,14 @@
 resource "azurerm_linux_virtual_machine" "Deep-vm" {
-  name                  = "dev-machine"
-  resource_group_name   = azurerm_resource_group.Deep-rg.name
-  location              = azurerm_resource_group.Deep-rg.location
-  size                  = "Standard_B1s"
-  admin_username        = "adminuser"
-  network_interface_ids = [azurerm_network_interface.Deep-NIC.id, ]
+  name                            = "dev-machine"
+  resource_group_name             = azurerm_resource_group.Deep-rg.name
+  location                        = azurerm_resource_group.Deep-rg.location
+  size                            = "Standard_B1s"
+  admin_username                  = "adminuser"
+  admin_password                  = "JenkinsPass@20"
+  disable_password_authentication = false
+  network_interface_ids           = [azurerm_network_interface.Deep-NIC.id, ]
 
   custom_data = filebase64("customdata.tpl")
-
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("C:/Users/deepg/.ssh/tfazkey.pub")
-
-  }
 
   os_disk {
     caching              = "ReadWrite"
