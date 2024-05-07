@@ -22,26 +22,28 @@ resource "azurerm_linux_virtual_machine" "Deep-vm" {
     version   = "latest"
   }
 
-  provisioner "local-exec" {
-    command = templatefile("${var.host_os}-ssh-script.tpl", {
-      hostname     = self.public_ip_address,
-      user         = "adminuser",
-      identityfile = "~/.ssh/tfazkey"
-    })
-    #interpreter = var.host_os == "windows" ? ["PowerShell", "-Command"] : ["bash", "-c"]
-
-  }
-
   tags = {
     environment = "dev"
   }
 }
 
-data "azurerm_public_ip" "Deep-ip-data" {
-  name                = azurerm_public_ip.Deep-ip.name
-  resource_group_name = azurerm_resource_group.Deep-rg.name
-}
+#provisioner "local-exec" {
+#command = templatefile("${var.host_os}-ssh-script.tpl", {
+# hostname     = self.public_ip_address,
+#user         = "adminuser",
+#identityfile = "~/.ssh/tfazkey"
+#})
+#
+#interpreter = var.host_os == "windows" ? ["PowerShell", "-Command"] : ["bash", "-c"]
+#}
 
-output "public_ip_address" {
-  value = "${azurerm_linux_virtual_machine.Deep-vm.name}: ${data.azurerm_public_ip.Deep-ip-data.ip_address}"
-}
+
+
+#data "azurerm_public_ip" "Deep-ip-data" {
+# name                = azurerm_public_ip.Deep-ip.name
+#resource_group_name = azurerm_resource_group.Deep-rg.name
+#}
+
+#output "public_ip_address" {
+# value = "${azurerm_linux_virtual_machine.Deep-vm.name}: ${data.azurerm_public_ip.Deep-ip-data.ip_address}"
+#}
