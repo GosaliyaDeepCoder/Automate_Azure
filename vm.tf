@@ -10,7 +10,7 @@ resource "azurerm_linux_virtual_machine" "Deep-vm" {
 
   admin_ssh_key {
     username   = "adminuser"
-    public_key = file("${path.module}/tfazkey.pub")
+    public_key = file("~/.ssh/tfazkey.pub")
 
   }
 
